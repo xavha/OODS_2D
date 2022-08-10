@@ -1,25 +1,23 @@
 print("*** Fun with countdown ***")
-h= [int(h) for h in input("Enter List : ").split()]
-l=[]
-sumOne=0
+l = [int(l) for l in input("Enter List : ").split()]
 
-temp = 1
-def countdown(temp):
-    global l
-    while(temp in h) :
-        l.append(temp)
-        h.remove(temp)
-        temp+=1
-    temp = 1
-    print(l)
-    l=[]
-
-for i in range(len(h)) :
-    if h[i]==1:
-        sumOne+=1
-
-for i in range(sumOne) :
-    countdown(temp)
+col=[]
+countdown=[]
+num=0
 
 
+for i in range(len(l)) :
+    temp=l[i]
+    if i<=len(l)-2 and l[i]-l[i+1]==1:
+        col.append(temp)
+    elif l[i]==1 :
+        col.append(temp)
+        countdown.append(col)
+        num+=1
+        col=[]
+    else :
+        col=[]
 
+print([num,countdown])
+
+#  4 4 5 4 3 2 1 8 3 2 1
