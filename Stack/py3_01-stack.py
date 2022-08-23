@@ -1,8 +1,8 @@
 class basicStack():
     def __init__(self):
-        self.stack=[]
+        self.stack = []
 
-    def add(self,item):
+    def add(self, item):
         self.stack.append(item)
         return f'Add = {item} and Size = {len(self.stack)}'
 
@@ -20,22 +20,20 @@ class basicStack():
 
     def conclusion_stack(self):
         if not self.is_empty():
-            string=' '.join(map(str,self.stack))
+            string = ' '.join(map(str, self.stack))
             return f'Value in Stack = {string}'
         else:
             return f'Value in Stack = Empty'
 
 
-    
-
-add = list(map(str,input("Enter Input : ").split(",")))
-basicstack=basicStack()
+add = list(map(str, input("Enter Input : ").split(",")))
+basicstack = basicStack()
 
 for i in add:
-    cm=i.split()
-    if cm[0]=='A':
+    cm = i.split()
+    if cm[0] == 'A':
         print(basicstack.add(cm[1]))
-    else :
+    else:
         print(basicstack.pop())
 
-print(basicstack.conclusion_stack()) 
+print(basicstack.conclusion_stack())
