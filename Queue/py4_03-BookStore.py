@@ -32,12 +32,12 @@ comd = inp[0].split()
 Q = Queue()
 
 for i in comd:
-    Q.enqueue(i)
+    Q.enqueue(int(i))
 
 for i in comm:
     cm = i.split()
     if cm[0] == 'E':
-        Q.enqueue(cm[1])
+        Q.enqueue(int(cm[1]))
     else:
         Q.dequeue()
 
