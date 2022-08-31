@@ -7,7 +7,7 @@ class Queue:
 
     def dequeue(self):
         if self.is_Empty():
-            return 'Empty'
+            return ['Empty']
         else:
             return self.queue.pop(0)
 
@@ -25,10 +25,11 @@ inp = input('Enter Input : ').split('/')
 comm = inp[0].split(',')
 comp = inp[1].split(',')
 typeId = []
-waiting = []
-a = {}
+
+check = False
 
 Q = Queue()
+tempQ = Queue()
 
 for i in comm:
     cm = i.split()
@@ -39,12 +40,27 @@ d = dict(typeId)
 for i in comp:
     cm = i.split()
     if cm[0] == 'E':
-        waiting.append(((cm[1]), (d[cm[1]])))
+        if Q.is_Empty():
+            Q.enqueue([(cm[1]), int(d[cm[1]])])
+        else:
+            a = d[cm[1]]
+
+            for i in range(0, Q.getsize()):
+                if int(a) == Q.queue[i][1]:
+                    index = i+1
+                    check = True
+            if not check:
+                index = Q.getsize()
+            check = False
+
+            for i in range(0, index):
+                tempQ.enqueue(Q.dequeue())
+            tempQ.enqueue([(cm[1]), int(d[cm[1]])])
+
+            while not Q.is_Empty():
+                tempQ.enqueue(Q.dequeue())
+            while not tempQ.is_Empty():
+                Q.enqueue(tempQ.dequeue())
+
     else:
-        a = dict(waiting)
-        a = sorted(a.items(), key=lambda x: x[1])
-        for i in range(len(waiting)):
-            Q.enqueue(a[i][0])
-        a = {}
-        waiting = []
-        print(Q.dequeue())
+        print(Q.dequeue()[0])
