@@ -32,14 +32,25 @@ def Gcd(max, min):
     else:
         return Gcd(min, max % min)
 
+
+def Clearstr(str, l, i):
+    if i == len(str):
+        return l
+    else:
+        if str[i] >= 'a' and str[i] <= 'z':
+            l.append(str[i])
+        return Clearstr(str, l, i+1)
+
+
 def main_findmin():
     inp = input('Enter number : ').split()
     print(findmin(inp))
 
 
 def main_palindrome():
-    inp = list(input('Enter Input : '))
-    print(f"'{''.join(inp)}' {Palindrome(inp)}")
+    inp = input('Enter Input : ')
+    list_inp = Clearstr(inp.lower(), [], 0)
+    print(f"'{''.join(inp)}' {Palindrome(list_inp)}")
 
 
 def main_gcd():
@@ -55,6 +66,6 @@ def main_sort():
 
 if __name__ == '__main__':
     # main_findmin()
-    # main_palindrome()
+    main_palindrome()
     # main_gcd()
     # main_sort()
